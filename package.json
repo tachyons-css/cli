@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/johnotander/tachyons-cli.git"
+    "url": "https://github.com/tachyons-css/tachyons-cli.git"
   },
   "keywords": [
     "tachyons",
@@ -28,9 +28,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/johnotander/tachyons-cli/issues"
+    "url": "https://github.com/tachyons-css/tachyons-cli/issues"
   },
-  "homepage": "https://github.com/johnotander/tachyons-cli",
+  "homepage": "https://github.com/tachyons-css/tachyons-cli",
   "dependencies": {
     "autoprefixer": "^6.0.3",
     "chalk": "^1.1.1",
