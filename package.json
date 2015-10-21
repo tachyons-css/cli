@@ -1,0 +1,54 @@
+{
+  "name": "tachyons-cli",
+  "description": "Postprocess tachyons stylesheets",
+  "author": "John Otander",
+  "version": "0.1.0",
+  "main": "index.js",
+  "bin": {
+    "tachyons": "cli.js"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "files": [
+    "cli.js"
+  ],
+  "scripts": {
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/johnotander/tachyons-cli.git"
+  },
+  "keywords": [
+    "tachyons",
+    "css",
+    "cli",
+    "cli-app"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/johnotander/tachyons-cli/issues"
+  },
+  "homepage": "https://github.com/johnotander/tachyons-cli",
+  "dependencies": {
+    "autoprefixer": "^6.0.3",
+    "chalk": "^1.1.1",
+    "css-mqpacker": "^4.0.0",
+    "cssnano": "^3.3.1",
+    "file-exists": "^0.1.1",
+    "is-blank": "^1.0.0",
+    "is-present": "^1.0.0",
+    "meow": "^3.4.2",
+    "mkdirp": "^0.5.1",
+    "postcss": "^5.0.10",
+    "postcss-conditionals": "^2.0.0",
+    "postcss-css-variables": "^0.5.0",
+    "postcss-custom-media": "^5.0.0",
+    "postcss-discard-comments": "^2.0.2",
+    "postcss-import": "^7.1.0"
+  },
+  "devDependencies": {
+    "ava": "*"
+  }
+}
