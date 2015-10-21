@@ -24,10 +24,11 @@ const cli = meow(`
     $ tachyons <input.css>
 
   Options
-    -m --minify Minify the output stylesheet
+    -m, --minify Minify the output stylesheet
 
   Example
     $ tachyons src/tachyons.css > dist/c.css
+    $ tachyons -m src/tachyons.css > dist/c.css
 `, {
   alias: {
     m: 'minify'
@@ -56,10 +57,10 @@ if (cli.flags.minify) {
 }
 
 const input = fs.readFileSync(inputFile, 'utf8')
-const output = postcss(plugins).process(input, {
+postcss(plugins).process(input, {
   from: inputFile,
   to: outputFile
-}).css
-
-console.log(output)
-process.exit(1)
+}).then(function (result) {
+  console.log(result.css)
+  process.exit(0)
+})

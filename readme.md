@@ -5,15 +5,25 @@ Postprocess tachyons stylesheets
 ## Installation
 
 ```bash
-npm install --save tachyons-cli
+npm install --g tachyons-cli
 ```
 
 ## Usage
 
-```javascript
-var tachyonsCli = require('tachyons-cli')
+```sh
+$ tachyons --help
 
-tachyonsCli()  // => true
+  Postprocess tachyons stylesheets
+
+  Usage
+    $ tachyons <input.css>
+
+  Options
+    -m, --minify Minify the output stylesheet
+
+  Example
+    $ tachyons src/tachyons.css > dist/c.css
+    $ tachyons -m src/tachyons.css > dist/c.css
 ```
 
 ## License

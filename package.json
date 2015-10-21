@@ -49,6 +49,7 @@
     "postcss-import": "^7.1.0"
   },
   "devDependencies": {
-    "ava": "*"
+    "ava": "*",
+    "pify": "^2.2.0"
   }
 }

@@ -1,8 +1,11 @@
+import fs from 'fs'
 import test from 'ava'
-import tachyonsCli from './'
+import pify from 'pify'
+import childProcess from 'child_process'
 
-test('tachyons-cli does something awesome', t => {
-  t.plan(1)
+const output = fs.readFileSync('test/fixtures/output.css', 'utf8').trim()
 
-  t.true(tachyonsCli())
+test(async t => {
+  const stdout = await pify(childProcess.execFile)('./cli.js', ['test/fixtures/input.css'])
+  t.same(stdout.trim(), output)
 })
