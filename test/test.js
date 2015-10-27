@@ -3,9 +3,23 @@ import test from 'ava'
 import pify from 'pify'
 import childProcess from 'child_process'
 
-const output = fs.readFileSync('test/fixtures/output.css', 'utf8').trim()
+const cssOutput = fs.readFileSync('fixtures/output.css', 'utf8').trim()
+const docsOutput = fs.readFileSync('fixtures/output.md', 'utf8').trim()
 
-test(async t => {
-  const stdout = await pify(childProcess.execFile)('./cli.js', ['test/fixtures/input.css'])
-  t.same(stdout.trim(), output)
+test('processes source code', async t => {
+  const stdout = await pify(childProcess.execFile)('../cli.js', ['fixtures/input.css'], { cwd: __dirname })
+  t.same(stdout.trim(), cssOutput)
+})
+
+test('documents a module', async t => {
+  const stdout = await pify(childProcess.execFile)(
+    '../cli.js', [
+      '../node_modules/tachyons-type-scale/src/tachyons-type-scale.css',
+      '--generate-docs',
+      '--package=./node_modules/tachyons-type-scale/package.json',
+      '--template=../templates/readme.md'
+    ]
+  )
+
+  t.same(stdout.trim(), docsOutput)
 })
