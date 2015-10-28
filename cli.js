@@ -2,12 +2,14 @@
 'use strict'
 
 const fs = require('fs')
+const _ = require('lodash')
 const meow = require('meow')
 const chalk = require('chalk')
 const mkdirp = require('mkdirp')
 const isBlank = require('is-blank')
 const isPresnet = require('is-present')
 const fileExists = require('file-exists')
+const cssstats = require('cssstats')
 
 const postcss = require('postcss')
 const cssnano = require('cssnano')
@@ -25,10 +27,13 @@ const cli = meow(`
 
   Options
     -m, --minify Minify the output stylesheet
+    --generate-docs Generate documentation for a given module
+    --package The path to the module package to be documented
 
   Example
     $ tachyons src/tachyons.css > dist/c.css
     $ tachyons -m src/tachyons.css > dist/c.css
+    $ tachyons src/tachyons-type-scale.css --generate-docs --package=./package.json > readme.md
 `, {
   alias: {
     m: 'minify'
@@ -61,6 +66,22 @@ postcss(plugins).process(input, {
   from: inputFile,
   to: outputFile
 }).then(function (result) {
-  console.log(result.css)
-  process.exit(0)
+  if (cli.flags.generateDocs) {
+    const stats = cssstats(result.css)
+    const pkg = require(cli.flags.package)
+    const template = fs.readFileSync(__dirname + '/templates/readme.md', 'utf8')
+    const tpl = _.template(template)
+
+    const md = tpl({
+      module: pkg,
+      stats: stats,
+      srcCss: result.css
+    })
+
+    console.log(md)
+    process.exit(0)
+  } else {
+    console.log(result.css)
+    process.exit(0)
+  }
 })
