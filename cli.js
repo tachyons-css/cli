@@ -10,10 +10,12 @@ const isBlank = require('is-blank')
 const isPresnet = require('is-present')
 const fileExists = require('file-exists')
 const cssstats = require('cssstats')
+const trailingLines = require('single-trailing-newline')
 
 const postcss = require('postcss')
 const cssnano = require('cssnano')
 const queries = require('css-mqpacker')
+const perfect = require('perfectionist')
 const prefixer = require('autoprefixer')
 const atImport = require('postcss-import')
 const media = require('postcss-custom-media')
@@ -54,11 +56,12 @@ if (isBlank(inputFile)) {
 }
 
 let plugins = [
-  atImport(), vars(), conditionals(), media(), rmComments(), queries()
+  atImport(), vars(), conditionals(), media(), queries(), perfect({ format: 'compact' })
 ]
 
 if (cli.flags.minify) {
   plugins.push(cssnano())
+  plugins.push(rmComments())
 }
 
 const input = fs.readFileSync(inputFile, 'utf8')
@@ -75,13 +78,13 @@ postcss(plugins).process(input, {
     const md = tpl({
       module: pkg,
       stats: stats,
-      srcCss: result.css
+      srcCss: trailingLines(result.css)
     })
 
-    console.log(md)
+    console.log(trailingLines(md))
     process.exit(0)
   } else {
-    console.log(result.css)
+    console.log(trailingLines(result.css))
     process.exit(0)
   }
 })
