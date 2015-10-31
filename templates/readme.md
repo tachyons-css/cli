@@ -24,8 +24,7 @@ git clone https://github.com/tachyons-css/<%= module.name %>
 ## The Code
 
 ```css
-<%= srcCss %>
-```
+<%= srcCss %>```
 
 ### Authors
 
@@ -35,3 +34,6 @@ git clone https://github.com/tachyons-css/<%= module.name %>
 ## License
 
 MIT
+
+
+
