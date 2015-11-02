@@ -4,8 +4,9 @@ Performance based css module.
 
 ### Stats
 
+229 | 25 | 24
 ---|---|---
-229 bytes | 25 selectors | 24 declarations
+bytes | selectors | declarations
 
 ## Install
 
