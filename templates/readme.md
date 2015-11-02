@@ -4,8 +4,9 @@
 
 ### Stats
 
+<%= stats.gzipSize %> | <%= stats.selectors.total %> | <%= stats.declarations.total %>
 ---|---|---
-<%= stats.gzipSize %> bytes | <%= stats.selectors.total %> selectors | <%= stats.declarations.total %> declarations
+bytes | selectors | declarations
 
 ## Install
 
@@ -34,6 +35,3 @@ git clone https://github.com/tachyons-css/<%= module.name %>
 ## License
 
 MIT
-
-
-
