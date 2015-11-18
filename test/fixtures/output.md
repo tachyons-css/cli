@@ -51,7 +51,7 @@ You can either cut and paste that css or link to it directly in your html.
 #### Development
 
 The source CSS files can be found in the `src` directory.
-Running `$ npm start` will process the source CSS and place the built in the `css` directory.
+Running `$ npm start` will process the source CSS and place the built CSS in the `css` directory.
 
 ## The CSS
 
