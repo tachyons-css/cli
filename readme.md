@@ -30,7 +30,7 @@ $ tachyons --help
 
   Example
     $ tachyons src/tachyons.css > dist/c.css
-    $ tachyons -m src/tachyons.css > dist/c.css
+    $ tachyons src/tachyons.css > dist/c.css --minify
     $ tachyons src/tachyons-type-scale.css --generate-docs --package=./package.json > readme.md
 ```
 
