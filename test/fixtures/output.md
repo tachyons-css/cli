@@ -1,10 +1,10 @@
-# tachyons-type-scale 4.0.2
+# tachyons-type-scale 4.1.0
 
 Performance based css module.
 
 #### Stats
 
-226 | 25 | 24
+225 | 25 | 24
 ---|---|---
 bytes | selectors | declarations
 
@@ -66,14 +66,14 @@ Running `$ npm start` will process the source CSS and place the built CSS in the
 .f2 { font-size: 1.5rem; }
 .f3 { font-size: 1.25rem; }
 .f4 { font-size: 1rem; }
-.f5, .small { font-size: .875rem; }
+.f5, .small { font-size: .85rem; }
 @media screen and (min-width: 48em) {
  .mega-ns { font-size: 4rem; }
  .f1-ns { font-size: 2rem; }
  .f2-ns { font-size: 1.5rem; }
  .f3-ns { font-size: 1.25rem; }
  .f4-ns { font-size: 1rem; }
- .f5-ns { font-size: .875rem; }
+ .f5-ns { font-size: .85rem; }
 }
 @media screen and (min-width: 48em) and (max-width: 64em) {
  .mega-m { font-size: 4rem; }
@@ -81,7 +81,7 @@ Running `$ npm start` will process the source CSS and place the built CSS in the
  .f2-m { font-size: 1.5rem; }
  .f3-m { font-size: 1.25rem; }
  .f4-m { font-size: 1rem; }
- .f5-m { font-size: .875rem; }
+ .f5-m { font-size: .85rem; }
 }
 @media screen and (min-width: 64em) {
  .mega-l { font-size: 4rem; }
@@ -89,7 +89,7 @@ Running `$ npm start` will process the source CSS and place the built CSS in the
  .f2-l { font-size: 1.5rem; }
  .f3-l { font-size: 1.25rem; }
  .f4-l { font-size: 1rem; }
- .f5-l { font-size: .875rem; }
+ .f5-l { font-size: .85rem; }
 }
 ```
 
@@ -109,3 +109,4 @@ Running `$ npm start` will process the source CSS and place the built CSS in the
 ## License
 
 MIT
+

@@ -22,6 +22,7 @@ const media = require('postcss-custom-media')
 const vars = require('postcss-css-variables')
 const conditionals = require('postcss-conditionals')
 const rmComments = require('postcss-discard-comments')
+const classRepeat = require('postcss-class-repeat')
 
 const cli = meow(`
   Usage
@@ -29,16 +30,19 @@ const cli = meow(`
 
   Options
     -m, --minify Minify the output stylesheet
+    -r, --repeat Repeat class names to increas specificity
     --generate-docs Generate documentation for a given module
     --package The path to the module package to be documented
 
   Example
     $ tachyons src/tachyons.css > dist/c.css
     $ tachyons src/tachyons.css > dist/c.css --minify
+    $ tachyons src/tachyons.css > dist/c.repeated.css --repeat
     $ tachyons src/tachyons-type-scale.css --generate-docs --package=./package.json > readme.md
 `, {
   alias: {
-    m: 'minify'
+    m: 'minify',
+    r: 'repeat'
   } 
 })
 
@@ -62,6 +66,10 @@ let plugins = [
 if (cli.flags.minify) {
   plugins.push(cssnano())
   plugins.push(rmComments())
+}
+
+if (cli.flags.repeat) {
+  plugins.push(classRepeat({ repeat: 4 }))
 }
 
 const input = fs.readFileSync(inputFile, 'utf8')

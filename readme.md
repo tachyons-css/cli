@@ -25,12 +25,14 @@ $ tachyons --help
 
   Options
     -m, --minify Minify the output stylesheet
+    -r, --repeat Repeat class names to increas specificity
     --generate-docs Generate documentation for a given module
     --package The path to the module package to be documented
 
   Example
     $ tachyons src/tachyons.css > dist/c.css
     $ tachyons src/tachyons.css > dist/c.css --minify
+    $ tachyons src/tachyons.css > dist/c.repeated.css --repeat=4
     $ tachyons src/tachyons-type-scale.css --generate-docs --package=./package.json > readme.md
 ```
 
