@@ -11,6 +11,7 @@ const isPresnet = require('is-present')
 const fileExists = require('file-exists')
 const cssstats = require('cssstats')
 const trailingLines = require('single-trailing-newline')
+const authorsToMd = require('authors-to-markdown')
 
 const postcss = require('postcss')
 const cssnano = require('cssnano')
@@ -30,7 +31,8 @@ const cli = meow(`
 
   Options
     -m, --minify Minify the output stylesheet
-    -r, --repeat Repeat class names to increas specificity
+    -r, --repeat Repeat class names to increase specificity
+    -a, --authors Dynamically add authors based on package.json
     --generate-docs Generate documentation for a given module
     --package The path to the module package to be documented
 
@@ -42,7 +44,8 @@ const cli = meow(`
 `, {
   alias: {
     m: 'minify',
-    r: 'repeat'
+    r: 'repeat',
+    a: 'authors'
   } 
 })
 
@@ -69,7 +72,13 @@ if (cli.flags.minify) {
 }
 
 if (cli.flags.repeat) {
-  plugins.push(classRepeat({ repeat: 4 }))
+  var repeatNum = parseInt(cli.flags.repeat) || 4
+
+  if (repeatNum < 2) {
+    repeatNum = 4
+  }
+
+  plugins.push(classRepeat({ repeat: repeatNum }))
 }
 
 const input = fs.readFileSync(inputFile, 'utf8')
@@ -83,9 +92,18 @@ postcss(plugins).process(input, {
     const template = fs.readFileSync(__dirname + '/templates/readme.md', 'utf8')
     const tpl = _.template(template)
 
+    let authors = `* [mrmrs](http://mrmrs.io)
+* [johno](http://johnotander.com)
+`
+
+    if (cli.flags.authors) {
+      authors = authorsToMd(pkg)
+    }
+
     const md = tpl({
       module: pkg,
       stats: stats,
+      authors: authors,
       srcCss: trailingLines(result.css)
     })
 
