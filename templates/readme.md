@@ -68,9 +68,7 @@ Running `$ npm start` will process the source CSS and place the built CSS in the
 
 ## Authors
 
-* [mrmrs](http://mrmrs.io)
-* [johno](http://johnotander.com)
-
+<%= authors %>
 ## License
 
 MIT

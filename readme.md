@@ -18,21 +18,22 @@ npm install --g tachyons-cli
 ```sh
 $ tachyons --help
 
-  Postprocess tachyons stylesheets and, if you wish, generate docs
+  Postprocess tachyons stylesheets
 
   Usage
     $ tachyons <input.css>
 
   Options
     -m, --minify Minify the output stylesheet
-    -r, --repeat Repeat class names to increas specificity
+    -r, --repeat Repeat class names to increase specificity
+    -a, --authors Dynamically add authors based on package.json
     --generate-docs Generate documentation for a given module
     --package The path to the module package to be documented
 
   Example
     $ tachyons src/tachyons.css > dist/c.css
     $ tachyons src/tachyons.css > dist/c.css --minify
-    $ tachyons src/tachyons.css > dist/c.repeated.css --repeat=4
+    $ tachyons src/tachyons.css > dist/c.repeated.css --repeat
     $ tachyons src/tachyons-type-scale.css --generate-docs --package=./package.json > readme.md
 ```
 
