@@ -1,0 +1,14 @@
+{
+  "name": "tachyons-new",
+  "version": "1.0.0",
+  "description": "Generated project scaffold for Tachyons",
+  "scripts": {
+    "start": "tachyons src/styles.css --minify > css/t.min.css"
+  },
+  "repository": "tachyons-css/tachyons",
+  "license": "MIT",
+  "devDependencies": {
+    "tachyons": "^4.0.0-beta.6",
+    "tachyons-cli": "^0.5.0"
+  }
+}

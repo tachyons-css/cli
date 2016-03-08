@@ -6,7 +6,7 @@
     "url": "johnotander.com",
     "email": "johnotander@gmail.com"
   },
-  "version": "0.5.0",
+  "version": "0.6.0",
   "main": "index.js",
   "bin": {
     "tachyons": "cli.js"
@@ -40,6 +40,7 @@
     "authors-to-markdown": "^0.1.0",
     "autoprefixer": "^6.3.1",
     "chalk": "^1.1.1",
+    "copy-files": "^0.1.0",
     "css-mqpacker": "^4.0.0",
     "cssnano": "^3.4.0",
     "cssstats": "^2.1.2",
@@ -64,6 +65,6 @@
   "devDependencies": {
     "ava": "*",
     "pify": "^2.3.0",
-    "tachyons-type-scale": "^5.0.1"
+    "tachyons-type-scale": "5.0.2"
   }
 }
