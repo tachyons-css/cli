@@ -61,8 +61,6 @@ $ npm t
 - [`cssstats`](https://github.com/cssstats/cssstats)
 - [`immutable-css`](https://github.com/johnotander/immutable-css)
 
-#### Dependencies
-
 ## License
 
 MIT
