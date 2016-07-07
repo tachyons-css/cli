@@ -6,7 +6,7 @@
     "url": "johnotander.com",
     "email": "johnotander@gmail.com"
   },
-  "version": "0.6.1",
+  "version": "1.0.0",
   "main": "index.js",
   "bin": {
     "tachyons": "cli.js"
