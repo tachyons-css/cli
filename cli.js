@@ -13,7 +13,7 @@ const cssstats = require('cssstats')
 const trailingLines = require('single-trailing-newline')
 const authorsToMd = require('authors-to-markdown')
 
-const tachyonsBuild = require('./tachyons-build')
+const tachyonsBuildCss = require('tachyons-build-css')
 
 const cli = meow(`
   Usage
@@ -78,9 +78,9 @@ if (isBlank(inputFile)) {
 }
 
 const input = fs.readFileSync(inputFile, 'utf8')
-tachyonsBuild(input, {
-  inputFile: inputFile,
-  outputFile: outputFile,
+tachyonsBuildCss(input, {
+  from: inputFile,
+  to: outputFile,
   minify: cli.flags.minify,
   repeat: cli.flags.repeat
 }).then(function (result) {
