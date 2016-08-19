@@ -10,12 +10,12 @@ const docsAuthorsOutput = fs.readFileSync('fixtures/output-dynamic-authors.md', 
 
 test('processes source code', async t => {
   const stdout = await pify(childProcess.execFile)('../cli.js', ['fixtures/input.css'], { cwd: __dirname })
-  t.same(stdout.trim(), cssOutput)
+  t.is(stdout.trim(), cssOutput)
 })
 
 test('processes source code and repeats classes', async t => {
   const stdout = await pify(childProcess.execFile)('../cli.js', ['fixtures/input.css', '--repeat=4'], { cwd: __dirname })
-  t.same(stdout.trim(), cssRepeatOutput)
+  t.is(stdout.trim(), cssRepeatOutput)
 })
 
 test('documents a module', async t => {
@@ -28,7 +28,7 @@ test('documents a module', async t => {
     ]
   )
 
-  t.same(stdout.trim(), docsOutput)
+  t.is(stdout.trim(), docsOutput)
 })
 
 test('documents a module with dynamic authors', async t => {
@@ -42,5 +42,5 @@ test('documents a module with dynamic authors', async t => {
     ]
   )
 
-  t.same(stdout.trim(), docsAuthorsOutput)
+  t.is(stdout.trim(), docsAuthorsOutput)
 })

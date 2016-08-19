@@ -63,7 +63,7 @@ $ npm t
 
 ## License
 
-MIT
+ISC
 
 ## Contributing
 

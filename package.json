@@ -19,23 +19,16 @@
     "templates"
   ],
   "scripts": {
-    "test": "ava"
+    "test": "ava -v"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/tachyons-css/tachyons-cli.git"
-  },
+  "repository": "tachyons-css/tachyons-cli",
   "keywords": [
     "tachyons",
     "css",
     "cli",
     "cli-app"
   ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/tachyons-css/tachyons-cli/issues"
-  },
-  "homepage": "https://github.com/tachyons-css/tachyons-cli",
+  "license": "ISC",
   "dependencies": {
     "authors-to-markdown": "^0.1.0",
     "chalk": "^1.1.1",
