@@ -2,7 +2,7 @@
 
 Postprocess Tachyons stylesheets with a CLI app.
 
-This module is used to process Tachyons CSS modules and generate their documentation.
+This module is used to process Tachyons css modules and generate their documentation.
 It is leveraged in an [npm script](https://github.com/tachyons-css/tachyons-base/blob/d55f2f4458b1e03c582f8a6c86a41d964512775f/package.json#L34) shared among all modules.
 
 It is meant to be installed globally with the `--global` flag, and requires `v4` of node or higher.
@@ -39,7 +39,7 @@ $ tachyons --help
     $ tachyons --new=my-new-project
 ```
 
-#### Within a Tachyons CSS module
+#### Within a Tachyons css module
 
 ```sh
 $ tachyons src/tachyons-base.css > css/tachyons-base.css && \
