@@ -14,7 +14,7 @@ npm install .
 
 ## Usage
 
-Run `$ npm start` to compile the CSS and minify it. Then, open the `index.html`
+Run `$ npm start` to compile the css and minify it. Then, open the `index.html`
 
 ```sh
 npm start && open index.html
