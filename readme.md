@@ -1,4 +1,4 @@
-# tachyons-cli [![Build Status](https://secure.travis-ci.org/tachyons-css/tachyons-cli.png?branch=master)](https://travis-ci.org/tachyons-css/tachyons-cli) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
+# tachyons-cli [![Build Status](https://secure.travis-ci.org/tachyons-css/tachyons-cli.svg?branch=master)](https://travis-ci.org/tachyons-css/tachyons-cli) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
 
 Postprocess Tachyons stylesheets with a CLI app.
 
