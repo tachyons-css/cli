@@ -39,7 +39,7 @@ const cli = meow(`
     r: 'repeat',
     a: 'authors',
     n: 'new'
-  } 
+  }
 })
 
 const inputFile = cli.input[0]
