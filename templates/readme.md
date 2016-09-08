@@ -55,7 +55,7 @@ $ tachyons path/to/css-file.css > dist/t.css
 The easiest and most simple way to use the css is to use the cdn hosted version. Include it in the head of your html with:
 
 ```
-<link rel="stylesheet" href="http://npmcdn.com/<%= module.name %>@<%= module.version %>/css/<%= module.name %>.min.css" />
+<link rel="stylesheet" href="http://unpkg.com/<%= module.name %>@<%= module.version %>/css/<%= module.name %>.min.css" />
 ```
 
 ##### Locally
