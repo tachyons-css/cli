@@ -1,10 +1,10 @@
-# tachyons-type-scale 5.0.2
+# tachyons-type-scale 6.0.1
 
 Performance based css module.
 
 #### Stats
 
-318 | 40 | 32
+339 | 40 | 32
 ---|---|---
 bytes | selectors | declarations
 
@@ -55,7 +55,7 @@ $ tachyons path/to/css-file.css > dist/t.css
 The easiest and most simple way to use the css is to use the cdn hosted version. Include it in the head of your html with:
 
 ```
-<link rel="stylesheet" href="http://unpkg.com/tachyons-type-scale@5.0.2/css/tachyons-type-scale.min.css" />
+<link rel="stylesheet" href="http://unpkg.com/tachyons-type-scale@6.0.1/css/tachyons-type-scale.min.css" />
 ```
 
 ##### Locally
@@ -80,8 +80,14 @@ Running `$ npm start` will process the source css and place the built css in the
 
 */
 /* For Hero Titles */
-.f-6, .f-headline { font-size: 6rem; }
-.f-5, .f-subheadline { font-size: 5rem; }
+.f-6,
+.f-headline {
+  font-size: 6rem;
+}
+.f-5,
+.f-subheadline {
+  font-size: 5rem;
+}
 /* Type Scale */
 .f1 { font-size: 3rem; }
 .f2 { font-size: 2.25rem; }
@@ -89,35 +95,89 @@ Running `$ npm start` will process the source css and place the built css in the
 .f4 { font-size: 1.25rem; }
 .f5 { font-size: 1rem; }
 .f6 { font-size: .875rem; }
-@media screen and (min-width: 48em) {
- .f-6-ns, .f-headline-ns { font-size: 6rem; }
- .f-5-ns, .f-subheadline-ns { font-size: 5rem; }
- .f1-ns { font-size: 3rem; }
- .f2-ns { font-size: 2.25rem; }
- .f3-ns { font-size: 1.5rem; }
- .f4-ns { font-size: 1.25rem; }
- .f5-ns { font-size: 1rem; }
- .f6-ns { font-size: .875rem; }
+@media screen and (min-width: 30em) {
+  .f-6-ns,
+  .f-headline-ns {
+    font-size: 6rem;
+  }
+  .f-5-ns,
+  .f-subheadline-ns {
+    font-size: 5rem;
+  }
+  .f1-ns {
+    font-size: 3rem;
+  }
+  .f2-ns {
+    font-size: 2.25rem;
+  }
+  .f3-ns {
+    font-size: 1.5rem;
+  }
+  .f4-ns {
+    font-size: 1.25rem;
+  }
+  .f5-ns {
+    font-size: 1rem;
+  }
+  .f6-ns {
+    font-size: .875rem;
+  }
 }
-@media screen and (min-width: 48em) and (max-width: 64em) {
- .f-6-m, .f-headline-m { font-size: 6rem; }
- .f-5-m, .f-subheadline-m { font-size: 5rem; }
- .f1-m { font-size: 3rem; }
- .f2-m { font-size: 2.25rem; }
- .f3-m { font-size: 1.5rem; }
- .f4-m { font-size: 1.25rem; }
- .f5-m { font-size: 1rem; }
- .f6-m { font-size: .875rem; }
+@media screen and (min-width: 30em) and (max-width: 60em) {
+  .f-6-m,
+  .f-headline-m {
+    font-size: 6rem;
+  }
+  .f-5-m,
+  .f-subheadline-m {
+    font-size: 5rem;
+  }
+  .f1-m {
+    font-size: 3rem;
+  }
+  .f2-m {
+    font-size: 2.25rem;
+  }
+  .f3-m {
+    font-size: 1.5rem;
+  }
+  .f4-m {
+    font-size: 1.25rem;
+  }
+  .f5-m {
+    font-size: 1rem;
+  }
+  .f6-m {
+    font-size: .875rem;
+  }
 }
-@media screen and (min-width: 64em) {
- .f-6-l, .f-headline-l { font-size: 6rem; }
- .f-5-l, .f-subheadline-l { font-size: 5rem; }
- .f1-l { font-size: 3rem; }
- .f2-l { font-size: 2.25rem; }
- .f3-l { font-size: 1.5rem; }
- .f4-l { font-size: 1.25rem; }
- .f5-l { font-size: 1rem; }
- .f6-l { font-size: .875rem; }
+@media screen and (min-width: 60em) {
+  .f-6-l,
+  .f-headline-l {
+    font-size: 6rem;
+  }
+  .f-5-l,
+  .f-subheadline-l {
+    font-size: 5rem;
+  }
+  .f1-l {
+    font-size: 3rem;
+  }
+  .f2-l {
+    font-size: 2.25rem;
+  }
+  .f3-l {
+    font-size: 1.5rem;
+  }
+  .f4-l {
+    font-size: 1.25rem;
+  }
+  .f5-l {
+    font-size: 1rem;
+  }
+  .f6-l {
+    font-size: .875rem;
+  }
 }
 ```
 
