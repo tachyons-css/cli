@@ -12,6 +12,7 @@ const fileExists = require('file-exists')
 const cssstats = require('cssstats')
 const trailingLines = require('single-trailing-newline')
 const authorsToMd = require('authors-to-markdown')
+const pathExists = require('path-exists');
 const generate = require('../updatemediaquerie')
 
 const tachyonsBuildCss = require('tachyons-build-css')
@@ -70,61 +71,59 @@ if (cli.flags.new) {
   process.exit(0)
 }
 
-if (cli.flags.customMedia) {
-    console.log(outputFile);
-
-    generate(outputFile, {
-      variables: cli.flags.variables,
-      overwrite: cli.flags.overwrite
-    })
-
-    //process.exit(0)
-
-}
-/*
 if (isBlank(inputFile)) {
   console.error(chalk.red('Please provide an input stylesheet'))
   console.log(cli.help)
   process.exit(1)
-} else if (!fileExists(inputFile)) {
+} else if (!pathExists.sync(inputFile)) {
   console.error(chalk.red('File does not exist ' + inputFile))
   console.log(cli.help)
   process.exit(1)
 }
 
-const input = fs.readFileSync(inputFile, 'utf8')
-tachyonsBuildCss(input, {
-  from: inputFile,
-  to: outputFile,
-  minify: cli.flags.minify,
-  repeat: cli.flags.repeat
-}).then(function (result) {
-  if (cli.flags.generateDocs) {
-    const stats = cssstats(result.css)
-    const pkg = require(cli.flags.package)
-    const template = fs.readFileSync(__dirname + '/templates/readme.md', 'utf8')
-    const tpl = _.template(template)
+if (!cli.flags.customMedia) {
 
-    let authors = `* [mrmrs](http://mrmrs.io)
-* [johno](http://johnotander.com)
-`
+  const input = fs.readFileSync(inputFile, 'utf8')
+  tachyonsBuildCss(input, {
+    from: inputFile,
+    to: outputFile,
+    minify: cli.flags.minify,
+    repeat: cli.flags.repeat
+  }).then(function (result) {
+    if (cli.flags.generateDocs) {
+      const stats = cssstats(result.css)
+      const pkg = require(cli.flags.package)
+      const template = fs.readFileSync(__dirname + '/templates/readme.md', 'utf8')
+      const tpl = _.template(template)
 
-    if (cli.flags.authors) {
-      authors = authorsToMd(pkg)
+      let authors = `* [mrmrs](http://mrmrs.io)
+  * [johno](http://johnotander.com)
+  `
+
+      if (cli.flags.authors) {
+        authors = authorsToMd(pkg)
+      }
+
+      const md = tpl({
+        module: pkg,
+        stats: stats,
+        authors: authors,
+        srcCss: trailingLines(result.css)
+      })
+
+      console.log(trailingLines(md))
+      process.exit(0)
+    } else {
+      console.log(trailingLines(result.css))
+      process.exit(0)
     }
+  })
 
-    const md = tpl({
-      module: pkg,
-      stats: stats,
-      authors: authors,
-      srcCss: trailingLines(result.css)
+}
+
+if (cli.flags.customMedia) {
+    generate(inputFile, {
+      variables: cli.flags.variables,
+      overwrite: cli.flags.overwrite
     })
-
-    console.log(trailingLines(md))
-    process.exit(0)
-  } else {
-    console.log(trailingLines(result.css))
-    process.exit(0)
-  }
-})
-*/
+}
