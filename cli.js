@@ -26,8 +26,10 @@ const cli = meow(`
     -n, --new Generate a new Tachyons project
     --generate-docs Generate documentation for a given module
     --package The path to the module package to be documented
+    --customMedia Generate media queries single files or directorys
 
   Example
+    $ tachyons src/ > dist/ --customMedia --variables:src/variables.css --overwrite:false
     $ tachyons src/tachyons.css > dist/c.css
     $ tachyons src/tachyons.css > dist/c.css --minify
     $ tachyons src/tachyons.css > dist/c.repeated.css --repeat
