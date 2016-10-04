@@ -13,7 +13,7 @@ const cssstats = require('cssstats')
 const trailingLines = require('single-trailing-newline')
 const authorsToMd = require('authors-to-markdown')
 const pathExists = require('path-exists');
-const generate = require('../updatemediaquerie')
+const generate = require('tachyons-build-mediaquerie')
 
 const tachyonsBuildCss = require('tachyons-build-css')
 
