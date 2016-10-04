@@ -49,81 +49,82 @@ const cli = meow(`
 const inputFile = cli.input[0]
 const outputFile = cli.input[1]
 
+
+if (cli.flags.customMedia) {
+
+  generate(inputFile, {
+    variables: cli.flags.variables,
+    overwrite: cli.flags.overwrite
+  })
+
+} else {
+
 if (cli.flags.new) {
-  console.log('Generating a new Tachyons project')
-  const projDir = cli.flags.new == true ? 'tachyons-project' : cli.flags.new
+console.log('Generating a new Tachyons project')
+const projDir = cli.flags.new == true ? 'tachyons-project' : cli.flags.new
 
-  mkdirp.sync(projDir)
-  mkdirp.sync(projDir + '/src')
-  mkdirp.sync(projDir + '/css')
+mkdirp.sync(projDir)
+mkdirp.sync(projDir + '/src')
+mkdirp.sync(projDir + '/css')
 
-  const index = fs.readFileSync(__dirname + '/templates/new/index.html','utf8')
-  const pkg = fs.readFileSync(__dirname + '/templates/new/package.json', 'utf8')
-  const readme = fs.readFileSync(__dirname + '/templates/new/readme.md', 'utf8')
-  const style = fs.readFileSync(__dirname + '/templates/new/src/styles.css', 'utf8')
+const index = fs.readFileSync(__dirname + '/templates/new/index.html','utf8')
+const pkg = fs.readFileSync(__dirname + '/templates/new/package.json', 'utf8')
+const readme = fs.readFileSync(__dirname + '/templates/new/readme.md', 'utf8')
+const style = fs.readFileSync(__dirname + '/templates/new/src/styles.css', 'utf8')
 
-  fs.writeFileSync(projDir + '/index.html', index)
-  fs.writeFileSync(projDir + '/package.json', pkg)
-  fs.writeFileSync(projDir + '/readme.md', readme)
-  fs.writeFileSync(projDir + '/src/styles.css', style)
+fs.writeFileSync(projDir + '/index.html', index)
+fs.writeFileSync(projDir + '/package.json', pkg)
+fs.writeFileSync(projDir + '/readme.md', readme)
+fs.writeFileSync(projDir + '/src/styles.css', style)
 
-  console.log('New project located in ' + projDir)
-  process.exit(0)
+console.log('New project located in ' + projDir)
+process.exit(0)
 }
 
 if (isBlank(inputFile)) {
-  console.error(chalk.red('Please provide an input stylesheet'))
-  console.log(cli.help)
-  process.exit(1)
+console.error(chalk.red('Please provide an input stylesheet'))
+console.log(cli.help)
+process.exit(1)
 } else if (!pathExists.sync(inputFile)) {
-  console.error(chalk.red('File does not exist ' + inputFile))
-  console.log(cli.help)
-  process.exit(1)
+console.error(chalk.red('File does not exist ' + inputFile))
+console.log(cli.help)
+process.exit(1)
 }
 
-if (!cli.flags.customMedia) {
+const input = fs.readFileSync(inputFile, 'utf8')
+tachyonsBuildCss(input, {
+  from: inputFile,
+  to: outputFile,
+  minify: cli.flags.minify,
+  repeat: cli.flags.repeat
+}).then(function (result) {
+  if (cli.flags.generateDocs) {
+    const stats = cssstats(result.css)
+    const pkg = require(cli.flags.package)
+    const template = fs.readFileSync(__dirname + '/templates/readme.md', 'utf8')
+    const tpl = _.template(template)
 
-  const input = fs.readFileSync(inputFile, 'utf8')
-  tachyonsBuildCss(input, {
-    from: inputFile,
-    to: outputFile,
-    minify: cli.flags.minify,
-    repeat: cli.flags.repeat
-  }).then(function (result) {
-    if (cli.flags.generateDocs) {
-      const stats = cssstats(result.css)
-      const pkg = require(cli.flags.package)
-      const template = fs.readFileSync(__dirname + '/templates/readme.md', 'utf8')
-      const tpl = _.template(template)
+    let authors = `* [mrmrs](http://mrmrs.io)
+* [johno](http://johnotander.com)
+`
 
-      let authors = `* [mrmrs](http://mrmrs.io)
-  * [johno](http://johnotander.com)
-  `
-
-      if (cli.flags.authors) {
-        authors = authorsToMd(pkg)
-      }
-
-      const md = tpl({
-        module: pkg,
-        stats: stats,
-        authors: authors,
-        srcCss: trailingLines(result.css)
-      })
-
-      console.log(trailingLines(md))
-      process.exit(0)
-    } else {
-      console.log(trailingLines(result.css))
-      process.exit(0)
+    if (cli.flags.authors) {
+      authors = authorsToMd(pkg)
     }
-  })
 
-}
-
-if (cli.flags.customMedia) {
-    generate(inputFile, {
-      variables: cli.flags.variables,
-      overwrite: cli.flags.overwrite
+    const md = tpl({
+      module: pkg,
+      stats: stats,
+      authors: authors,
+      srcCss: trailingLines(result.css)
     })
+
+    console.log(trailingLines(md))
+    process.exit(0)
+  } else {
+    console.log(trailingLines(result.css))
+    process.exit(0)
+  }
+})
+
 }
