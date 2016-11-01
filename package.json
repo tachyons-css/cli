@@ -40,7 +40,7 @@
     "immutable-css": "^1.1.2",
     "is-blank": "^1.1.0",
     "is-present": "^1.0.0",
-    "lodash": "^4.16.0",
+    "lodash": "^4.16.6",
     "meow": "^3.7.0",
     "mkdirp": "^0.5.1",
     "single-trailing-newline": "^1.0.0",
