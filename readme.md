@@ -10,7 +10,7 @@ It is meant to be installed globally with the `--global` flag, and requires `v4`
 ## Installation
 
 ```bash
-npm install --g tachyons-cli
+npm install --global tachyons-cli
 ```
 
 ## Usage
