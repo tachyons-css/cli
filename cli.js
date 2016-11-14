@@ -4,37 +4,49 @@
 const fs = require('fs')
 const _ = require('lodash')
 const meow = require('meow')
-const chalk = require('chalk')
+const shtml = require('shtml')
 const mkdirp = require('mkdirp')
 const isBlank = require('is-blank')
 const isPresnet = require('is-present')
-const fileExists = require('file-exists')
+const assertFile = require('assert-file-exists')
 const cssstats = require('cssstats')
 const trailingLines = require('single-trailing-newline')
 const authorsToMd = require('authors-to-markdown')
 
 const tachyonsBuildCss = require('tachyons-build-css')
 
-const cli = meow(`
-  Usage
-    $ tachyons <input.css>
+const cli = meow(shtml`
+  <div>
+    <italic>
+      Welcome to the Tachyons cli. This is the build
+      tool used for processing Tachyons stylesheets,
+      generating apps, and customizing Tachyons
+      builds. If you encounter any bugs or have
+      questions please file an issue:
 
-  Options
+      <blue><underline>https://github.com/tachyons-css/tachyons-cli</underline></blue><br><br>
+    </italic>
+    <underline>Usage</underline>
+    $ tachyons [input.css]<br><br>
+
+    <underline>Options</underline>
     -m, --minify Minify the output stylesheet
     -r, --repeat Repeat class names to increase specificity
     -a, --authors Dynamically add authors based on package.json
     -n, --new Generate a new Tachyons project
     --generate-docs Generate documentation for a given module
-    --package The path to the module package to be documented
+    --package The path to the module package to be documented<br><br>
 
-  Example
-    $ tachyons src/tachyons.css > dist/c.css
-    $ tachyons src/tachyons.css > dist/c.css --minify
-    $ tachyons src/tachyons.css > dist/c.repeated.css --repeat
-    $ tachyons src/tachyons-type-scale.css --generate-docs --package=./package.json > readme.md
+    <underline>Examples</underline>
+    $ tachyons src/tachyons.css &gt; dist/c.css
+    $ tachyons src/tachyons.css &gt; dist/c.css --minify
+    $ tachyons src/tachyons.css &gt; dist/c.repeated.css --repeat
+    $ tachyons src/tachyons-type-scale.css --generate-docs --package=./package.json &gt; readme.md
     $ tachyons --new=my-new-project
+  </div>
 `, {
   alias: {
+    h: 'help',
     m: 'minify',
     r: 'repeat',
     a: 'authors',
@@ -68,14 +80,12 @@ if (cli.flags.new) {
 }
 
 if (isBlank(inputFile)) {
-  console.error(chalk.red('Please provide an input stylesheet'))
+  console.error(shtml`<red>Please provide an input stylesheet</red>`)
   console.log(cli.help)
   process.exit(1)
-} else if (!fileExists(inputFile)) {
-  console.error(chalk.red('File does not exist ' + inputFile))
-  console.log(cli.help)
-  process.exit(1)
-}
+} 
+
+assertFile(inputFile)
 
 const input = fs.readFileSync(inputFile, 'utf8')
 tachyonsBuildCss(input, {
