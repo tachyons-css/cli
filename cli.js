@@ -12,6 +12,8 @@ const fileExists = require('file-exists')
 const cssstats = require('cssstats')
 const trailingLines = require('single-trailing-newline')
 const authorsToMd = require('authors-to-markdown')
+const pathExists = require('path-exists');
+const generate = require('tachyons-build-mediaquerie')
 
 const tachyonsBuildCss = require('tachyons-build-css')
 
@@ -26,8 +28,10 @@ const cli = meow(`
     -n, --new Generate a new Tachyons project
     --generate-docs Generate documentation for a given module
     --package The path to the module package to be documented
+    --customMedia Generate media queries for single files or a directory
 
   Example
+    $ tachyons src/ --customMedia --variables=src/variables.css --overwrite=false
     $ tachyons src/tachyons.css > dist/c.css
     $ tachyons src/tachyons.css > dist/c.css --minify
     $ tachyons src/tachyons.css > dist/c.repeated.css --repeat
@@ -45,36 +49,46 @@ const cli = meow(`
 const inputFile = cli.input[0]
 const outputFile = cli.input[1]
 
+
+if (cli.flags.customMedia) {
+
+  generate(inputFile, {
+    variables: cli.flags.variables,
+    overwrite: cli.flags.overwrite
+  })
+
+} else {
+
 if (cli.flags.new) {
-  console.log('Generating a new Tachyons project')
-  const projDir = cli.flags.new == true ? 'tachyons-project' : cli.flags.new
+console.log('Generating a new Tachyons project')
+const projDir = cli.flags.new == true ? 'tachyons-project' : cli.flags.new
 
-  mkdirp.sync(projDir)
-  mkdirp.sync(projDir + '/src')
-  mkdirp.sync(projDir + '/css')
+mkdirp.sync(projDir)
+mkdirp.sync(projDir + '/src')
+mkdirp.sync(projDir + '/css')
 
-  const index = fs.readFileSync(__dirname + '/templates/new/index.html','utf8')
-  const pkg = fs.readFileSync(__dirname + '/templates/new/package.json', 'utf8')
-  const readme = fs.readFileSync(__dirname + '/templates/new/readme.md', 'utf8')
-  const style = fs.readFileSync(__dirname + '/templates/new/src/styles.css', 'utf8')
+const index = fs.readFileSync(__dirname + '/templates/new/index.html','utf8')
+const pkg = fs.readFileSync(__dirname + '/templates/new/package.json', 'utf8')
+const readme = fs.readFileSync(__dirname + '/templates/new/readme.md', 'utf8')
+const style = fs.readFileSync(__dirname + '/templates/new/src/styles.css', 'utf8')
 
-  fs.writeFileSync(projDir + '/index.html', index)
-  fs.writeFileSync(projDir + '/package.json', pkg)
-  fs.writeFileSync(projDir + '/readme.md', readme)
-  fs.writeFileSync(projDir + '/src/styles.css', style)
+fs.writeFileSync(projDir + '/index.html', index)
+fs.writeFileSync(projDir + '/package.json', pkg)
+fs.writeFileSync(projDir + '/readme.md', readme)
+fs.writeFileSync(projDir + '/src/styles.css', style)
 
-  console.log('New project located in ' + projDir)
-  process.exit(0)
+console.log('New project located in ' + projDir)
+process.exit(0)
 }
 
 if (isBlank(inputFile)) {
-  console.error(chalk.red('Please provide an input stylesheet'))
-  console.log(cli.help)
-  process.exit(1)
-} else if (!fileExists(inputFile)) {
-  console.error(chalk.red('File does not exist ' + inputFile))
-  console.log(cli.help)
-  process.exit(1)
+console.error(chalk.red('Please provide an input stylesheet'))
+console.log(cli.help)
+process.exit(1)
+} else if (!pathExists.sync(inputFile)) {
+console.error(chalk.red('File does not exist ' + inputFile))
+console.log(cli.help)
+process.exit(1)
 }
 
 const input = fs.readFileSync(inputFile, 'utf8')
@@ -112,3 +126,5 @@ tachyonsBuildCss(input, {
     process.exit(0)
   }
 })
+
+}

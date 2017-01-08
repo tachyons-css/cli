@@ -43,8 +43,10 @@
     "lodash": "^4.16.6",
     "meow": "^3.7.0",
     "mkdirp": "^0.5.1",
+    "path-exists": "^3.0.0",
     "single-trailing-newline": "^1.0.0",
-    "tachyons-build-css": "^1.1.2"
+    "tachyons-build-css": "^1.1.2",
+    "tachyons-build-mediaquerie" : "git://github.com/zehfernandes/tachyons-build-mediaquerie.git"
   },
   "devDependencies": {
     "ava": "*",
