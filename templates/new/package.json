@@ -9,6 +9,6 @@
   "license": "MIT",
   "devDependencies": {
     "tachyons": "^4.7.0",
-    "tachyons-cli": "^0.5.0"
+    "tachyons-cli": "^1.0.10"
   }
 }
