@@ -47,7 +47,7 @@
     "tachyons-build-css": "^1.1.2"
   },
   "devDependencies": {
-    "ava": "*",
+    "ava": "^0.16.0",
     "pify": "^2.3.0",
     "tachyons-type-scale": "6.0.1"
   }
