@@ -12,13 +12,14 @@
     "tachyons": "cli.js"
   },
   "engines": {
-    "node": ">=4"
+    "node": ">=6"
   },
   "files": [
     "cli.js",
     "templates"
   ],
   "scripts": {
+    "lint": "standard",
     "test": "ava -v",
     "test:rebuild": "ava -v test/regenerate-output.js"
   },
@@ -47,8 +48,9 @@
     "tachyons-build-css": "^1.1.2"
   },
   "devDependencies": {
-    "ava": "*",
+    "ava": "^0.16.0",
     "pify": "^2.3.0",
+    "standard": "^10.0.2",
     "tachyons-type-scale": "6.0.1"
   }
 }

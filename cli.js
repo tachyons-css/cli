@@ -53,7 +53,7 @@ if (cli.flags.new) {
   mkdirp.sync(projDir + '/src')
   mkdirp.sync(projDir + '/css')
 
-  const index = fs.readFileSync(__dirname + '/templates/new/index.html','utf8')
+  const index = fs.readFileSync(__dirname + '/templates/new/index.html', 'utf8')
   const pkg = fs.readFileSync(__dirname + '/templates/new/package.json', 'utf8')
   const readme = fs.readFileSync(__dirname + '/templates/new/readme.md', 'utf8')
   const style = fs.readFileSync(__dirname + '/templates/new/src/styles.css', 'utf8')
