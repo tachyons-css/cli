@@ -1,34 +1,32 @@
-import fs from 'fs'
-import test from 'ava'
-import pify from 'pify'
-import childProcess from 'child_process'
-
-const cssOutput = fs.readFileSync('fixtures/output.css', 'utf8').trim()
-const cssRepeatOutput = fs.readFileSync('fixtures/output.repeat.css', 'utf8').trim()
-const docsOutput = fs.readFileSync('fixtures/output.md', 'utf8').trim()
-const docsAuthorsOutput = fs.readFileSync('fixtures/output-dynamic-authors.md', 'utf8').trim()
+const fs = require('fs')
+const test = require('ava')
+const pify = require('pify')
+const childProcess = require('child_process')
 
 test('processes source code', async t => {
   const stdout = await pify(childProcess.execFile)('../cli.js', ['fixtures/input.css'], { cwd: __dirname })
-  t.is(stdout.trim(), cssOutput)
+
+  t.snapshot(stdout)
 })
 
 test('processes source code and repeats classes', async t => {
   const stdout = await pify(childProcess.execFile)('../cli.js', ['fixtures/input.css', '--repeat=4'], { cwd: __dirname })
-  t.is(stdout.trim(), cssRepeatOutput)
+
+  t.snapshot(stdout)
 })
 
 test('documents a module', async t => {
   const stdout = await pify(childProcess.execFile)(
     '../cli.js', [
-      '../node_modules/tachyons-type-scale/src/tachyons-type-scale.css',
+      'fixtures/input.css',
       '--generate-docs',
       '--package=./node_modules/tachyons-type-scale/package.json',
       '--template=../templates/readme.md'
-    ]
+    ],
+    { cwd: __dirname }
   )
 
-  t.is(stdout.trim(), docsOutput)
+  t.snapshot(stdout)
 })
 
 test('documents a module with dynamic authors', async t => {
@@ -39,8 +37,9 @@ test('documents a module with dynamic authors', async t => {
       '--package=./node_modules/tachyons-type-scale/package.json',
       '--template=../templates/readme.md',
       '--authors'
-    ]
+    ],
+    { cwd: __dirname }
   )
 
-  t.is(stdout.trim(), docsAuthorsOutput)
+  t.snapshot(stdout)
 })
