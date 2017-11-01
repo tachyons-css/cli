@@ -6,6 +6,7 @@ const _ = require('lodash')
 const meow = require('meow')
 const chalk = require('chalk')
 const mkdirp = require('mkdirp')
+const dedent = require('dedent')
 const isBlank = require('is-blank')
 const isPresnet = require('is-present')
 const fileExists = require('file-exists')
@@ -98,10 +99,19 @@ tachyonsBuildCss(input, {
       authors = authorsToMd(pkg)
     }
 
+    const srcMd = /^\/\*!!![\s\S]*?\*\/.*/.exec(input)
+
+    const defaultMd = `
+      # ${pkg.name} ${pkg.version}
+
+      ${pkg.description}
+    `
+
     const md = tpl({
+      stats,
+      authors,
       module: pkg,
-      stats: stats,
-      authors: authors,
+      srcMd: dedent(srcMd && srcMd[0] || defaultMd).replace(/^\/\*!!!/, '').replace(/\*\/$/, ''),
       srcCss: trailingLines(result.css)
     })
 

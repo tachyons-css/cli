@@ -1,12 +1,12 @@
 {
   "name": "tachyons-cli",
+  "version": "1.0.11",
   "description": "Postprocess tachyons stylesheets",
   "author": {
     "name": "John Otander",
     "url": "johnotander.com",
     "email": "johnotander@gmail.com"
   },
-  "version": "1.0.11",
   "main": "index.js",
   "bin": {
     "tachyons": "cli.js"
@@ -20,8 +20,7 @@
   ],
   "scripts": {
     "lint": "standard",
-    "test": "ava -v",
-    "test:rebuild": "ava -v test/regenerate-output.js"
+    "test": "ava -v"
   },
   "repository": "tachyons-css/tachyons-cli",
   "keywords": [
@@ -37,6 +36,7 @@
     "copy-files": "^0.1.0",
     "css-mqpacker": "^5.0.1",
     "cssstats": "^3.0.0-beta.2",
+    "dedent": "^0.7.0",
     "file-exists": "^2.0.0",
     "immutable-css": "^1.1.2",
     "is-blank": "^1.1.0",
@@ -48,7 +48,7 @@
     "tachyons-build-css": "^1.1.2"
   },
   "devDependencies": {
-    "ava": "^0.16.0",
+    "ava": "^0.23.0",
     "pify": "^2.3.0",
     "standard": "^10.0.2",
     "tachyons-type-scale": "6.0.1"

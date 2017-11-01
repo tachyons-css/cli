@@ -1,8 +1,6 @@
-# <%= module.name %> <%= module.version %>
+<%= srcMd %>
 
-<%= module.description %>
-
-#### Stats
+### Stats
 
 <%= stats.gzipSize %> | <%= stats.selectors.total %> | <%= stats.declarations.total %>
 ---|---|---
