@@ -45,7 +45,7 @@
     "meow": "^3.7.0",
     "mkdirp": "^0.5.1",
     "single-trailing-newline": "^1.0.0",
-    "tachyons-build-css": "^1.1.2"
+    "tachyons-build-css": "^1.6.0"
   },
   "devDependencies": {
     "ava": "^0.23.0",
