@@ -32,3 +32,5 @@
   .bg-cv-l {              background-size: cover; }
   .bg-cn-l {              background-size: contain; }
 }
+
+.fl { float: left }

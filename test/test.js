@@ -15,6 +15,12 @@ test('processes source code and repeats classes', async t => {
   t.snapshot(stdout)
 })
 
+test('processes source code and outputs rtl', async t => {
+  const stdout = await pify(childProcess.execFile)('../cli.js', ['fixtures/input.css', '--rtl'], { cwd: __dirname })
+
+  t.snapshot(stdout)
+})
+
 test('documents a module', async t => {
   const stdout = await pify(childProcess.execFile)(
     '../cli.js', [
