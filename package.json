@@ -32,7 +32,7 @@
   "license": "ISC",
   "dependencies": {
     "authors-to-markdown": "^0.1.0",
-    "chalk": "^2.3.2",
+    "chalk": "^2.4.1",
     "copy-files": "^0.1.0",
     "css-mqpacker": "^6.0.2",
     "cssstats": "^3.2.0",
@@ -41,8 +41,8 @@
     "immutable-css": "^1.1.2",
     "is-blank": "^2.1.0",
     "is-present": "^1.0.0",
-    "lodash": "^4.17.5",
-    "meow": "^4.0.0",
+    "lodash": "^4.17.10",
+    "meow": "^5.0.0",
     "mkdirp": "^0.5.1",
     "single-trailing-newline": "^1.0.0",
     "tachyons-build-css": "^1.7.0"
@@ -50,7 +50,7 @@
   "devDependencies": {
     "ava": "^0.25.0",
     "pify": "^3.0.0",
-    "standard": "^11.0.0",
+    "standard": "^11.0.1",
     "tachyons-type-scale": "6.1.0"
   }
 }
