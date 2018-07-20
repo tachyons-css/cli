@@ -28,6 +28,7 @@ const cli = meow(`
     --rtl Generate rtl supported css
     --generate-docs Generate documentation for a given module
     --package The path to the module package to be documented
+    --preserve-variables Preserve CSS variables in output
 
   Example
     $ tachyons src/tachyons.css > dist/c.css
@@ -85,7 +86,8 @@ tachyonsBuildCss(input, {
   to: outputFile,
   rtl: cli.flags.rtl,
   minify: cli.flags.minify,
-  repeat: cli.flags.repeat
+  repeat: cli.flags.repeat,
+  preserveVariables: cli.flags.preserveVariables
 }).then(function (result) {
   if (cli.flags.generateDocs) {
     const stats = cssstats(result.css)
