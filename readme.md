@@ -28,8 +28,10 @@ $ tachyons --help
     -r, --repeat Repeat class names to increase specificity
     -a, --authors Dynamically add authors based on package.json
     -n, --new Generate a new Tachyons project
+    --rtl Generate rtl supported css
     --generate-docs Generate documentation for a given module
     --package The path to the module package to be documented
+    --preserve-variables Preserve CSS variables in output
 
   Example
     $ tachyons src/tachyons.css > dist/c.css
