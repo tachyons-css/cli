@@ -18,7 +18,7 @@ const tachyonsBuildCss = require('tachyons-build-css')
 
 const cli = meow(`
   Usage
-    $ tachyons <input.css>
+    $ tachyons <input.css> [options] 
 
   Options
     -m, --minify Minify the output stylesheet
@@ -32,21 +32,42 @@ const cli = meow(`
 
   Example
     $ tachyons src/tachyons.css > dist/c.css
-    $ tachyons src/tachyons.css > dist/c.css --minify
-    $ tachyons src/tachyons.css > dist/c.repeated.css --repeat
+    $ tachyons src/tachyons.css --minify > dist/c.css
+    $ tachyons src/tachyons.css --repeat > dist/c.repeated.css
     $ tachyons src/tachyons-type-scale.css --generate-docs --package=./package.json > readme.md
     $ tachyons --new=my-new-project
 `, {
-  alias: {
-    m: 'minify',
-    r: 'repeat',
-    a: 'authors',
-    n: 'new'
+  flags: {
+    minify: {
+      type: 'boolean',
+      alias: 'm'
+    },
+    repeat: {
+      type: 'boolean',
+      alias: 'r'
+    },
+    authors: {
+      type: 'boolean',
+      alias: 'a'
+    },
+    'new': {
+      type: 'boolean',
+      alias: 'n'
+    },
+    rtl: {
+      type: 'boolean',
+    },
+    'generate-docs': {
+      type: 'boolean',
+    },
+    'package': {
+      type: 'boolean',
+      alias: 'r'
+    }
   }
 })
 
 const inputFile = cli.input[0]
-const outputFile = cli.input[1]
 
 if (cli.flags.new) {
   console.log('Generating a new Tachyons project')
@@ -83,7 +104,6 @@ if (isBlank(inputFile)) {
 const input = fs.readFileSync(inputFile, 'utf8')
 tachyonsBuildCss(input, {
   from: inputFile,
-  to: outputFile,
   rtl: cli.flags.rtl,
   minify: cli.flags.minify,
   repeat: cli.flags.repeat,
